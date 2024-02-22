@@ -1,0 +1,15 @@
+<div class="news-list">
+  <h2 class="h1">Автомобильные новости</h2>
+
+    <ng-container *ngFor="let news of newsList">
+      <div class="news">
+        <div class="news__image">
+          <img [src]="news.titleImageUrl" width="50" height="50">
+        </div>
+        <div class="news__date-box">
+          <p class="news__date">{{ news.publishedDate | date }}</p>
+        </div>
+        <h3 class="news__title">{{ news.title }}</h3>
+      </div>
+    </ng-container>
+</div>

@@ -1,0 +1,89 @@
+@import 'mixins/common';
+@import 'fonts';
+@import 'variables';
+@import 'colors';
+
+$h-line-height: 1.1;
+$b-line-height: 1.3;
+
+html,
+body {
+  color: $black-100;
+  font-family: $font-family-regular;
+  font-size: 100%;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-font-smoothing: antialiased;
+  height: 100%;
+  line-height: 1rem * $b-line-height;
+  margin: 0;
+  padding: 0;
+}
+
+input,
+button,
+select,
+textarea {
+  font-family: inherit;
+  font-size: inherit;
+  line-height: inherit;
+}
+
+h1,
+.h1 {
+  @include font-size-mixin(
+    $size-h1,
+    $size-h2,
+    $h-line-height,
+    $h-line-height
+  );
+  font-family: $font-family-semibold;
+  font-weight: inherit;
+}
+
+h2,
+.h2 {
+  @include font-size-mixin(
+    $size-h2,
+    $size-h3,
+    $h-line-height,
+    $h-line-height
+  );
+  font-family: $font-family-semibold;
+  font-weight: inherit;
+}
+
+h3,
+.h3 {
+  @include font-size-mixin($size-h3, $size-regular, $h-line-height, 1.2);
+  font-family: $font-family-semibold;
+  font-weight: inherit;
+}
+
+a {
+  color: $link;
+  text-decoration: none;
+
+  &:hover {
+    text-decoration: none;
+  }
+}
+
+p,
+.p {
+  @include font-size-mixin($size-regular, $size-s, 1.5, 1.4);
+  font-family: $font-family-regular;
+}
+
+.b,
+b,
+strong {
+  font-family: $font-family-semibold;
+  font-weight: normal;
+}
+
+ul,
+ol {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}

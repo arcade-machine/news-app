@@ -1,0 +1,19 @@
+@import '../variables';
+@import 'media';
+
+@mixin font-size-mixin(
+  $desktop-size,
+  $mobile-size,
+  $line-height-d,
+  $line-height-m
+) {
+  font-size: $mobile-size;
+  line-height: $line-height-m;
+  margin: 0;
+  padding: 0;
+
+  @include sm {
+    font-size: $desktop-size;
+    line-height: $line-height-d;
+  }
+}

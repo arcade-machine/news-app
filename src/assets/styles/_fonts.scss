@@ -1,0 +1,19 @@
+$font-regular: 'Inter-Regular';
+$font-bold: 'Inter-Bold';
+$font-medium: 'Inter-Medium';
+
+$fontPath: '/assets/fonts/';
+$fonts: $font-regular, $font-bold, $font-medium;
+
+@mixin generate-fonts($fonts: $fonts, $fontPath: $fontPath) {
+  @each $font in $fonts {
+    @font-face {
+      font-family: quote($font);
+      font-style: normal;
+      font-weight: 300;
+      src: url(quote($fontPath + $font + '.woff2')) format('woff2'),
+    }
+  }
+}
+
+@include generate-fonts();
