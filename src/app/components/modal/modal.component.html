@@ -1,0 +1,20 @@
+<div class="modal">
+  <form class="modal__form" (ngSubmit)="onSubmit()">
+    <div class="modal__header">
+      <h3 class="modal__title h2">Добавить новость</h3>
+      <button class="modal__button" type="button">
+        <span class="modal__button-hint">Закрыть модальное окно</span>
+      </button>
+    </div>
+    <input class="modal__input p" type="text" id="title" name="title" placeholder="Заголовок" required [(ngModel)]="formData.title">
+    <textarea class="modal__textarea p" type="text" id="text" name="text" placeholder="Текст" required [(ngModel)]="formData.text"></textarea>
+      <div class="modal__footer">
+      <label class="modal__upload">
+        <span class="modal__upload-hint">Загрузить изображение</span>
+        <input (change)="onFileSelected($event)" class="modal__upload-input" type="file" id="image" name="image" required>
+      </label>
+      <button class="modal__submit" type="submit">Опубликовать новость</button>
+
+    </div>
+  </form>
+</div>

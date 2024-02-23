@@ -1,12 +1,14 @@
 <header class="header">
   <div class="header__container container">
-    <img class="header__logo" ngSrc="assets/svg/logo.svg" height="53" width="40" alt="Логотип">
+    <img routerLink="/" class="header__logo" ngSrc="assets/svg/logo.svg" height="53" width="40" alt="Логотип">
     <h1 class="header__title p">Портал новостей</h1>
-    <button class="header__button">
+    <button class="header__button" (click)="addNews()">
       <span class="header__hint">Добавить новость</span>
     </button>
   </div>
 </header>
 <div class="container">
-  <app-news-list [newsList]="$news | async"></app-news-list>
+  <router-outlet></router-outlet>
 </div>
+
+<app-modal *ngIf="isModalOpen"></app-modal>

@@ -1,0 +1,89 @@
+@import "../../../assets/styles/colors";
+@import "../../../assets/styles/variables";
+@import "../../../assets/styles/mixins/media";
+
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  padding: 80px 16px;
+  background-color: rgba(0, 0, 0, 0.4);
+
+  &__form {
+    width: 100%;
+    padding: 16px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    border-radius: 16px;
+    background-color: $bg;
+
+    @include sm {
+      max-width: 632px;
+    }
+
+    @include md {
+      max-width: 952px;
+    }
+  }
+
+  &__header {
+    display: flex;
+    margin-bottom: 32px;
+  }
+
+  &__button-hint {
+    display: none;
+  }
+
+  &__input {
+    padding: 16px;
+    margin-bottom: 16px;
+    background-color: $black-05;
+    border: none;
+    border-radius: 16px;
+  }
+
+  &__textarea {
+    height: 230px;
+    padding: 16px;
+    margin-bottom: 16px;
+    background-color: $black-05;
+    border: none;
+    border-radius: 16px;
+    resize: none;
+  }
+
+  &__footer {
+    display: flex;
+    flex-direction: column;
+  }
+
+  &__upload, &__submit {
+    width: 100%;
+    padding: 16px;
+    border-radius: 16px;
+    text-align: center;
+  }
+
+  &__upload {
+    margin-bottom: 16px;
+    color: $link;
+    border: 1px dashed $link;
+    cursor: pointer;
+  }
+
+  &__upload-input {
+    display: none;
+  }
+
+  &__submit {
+    &:disabled {
+      color: $black-60;
+      border: none;
+      background-color: $black-10;
+    }
+  }
+}

@@ -1,0 +1,17 @@
+// this scss file is only needed
+// for proper view of html content
+// on the single news page
+
+p, img {
+  max-width: 100%;
+}
+
+.photo {
+  display: block;
+}
+
+.news-item__content {
+  p {
+    margin: 16px 0;
+  }
+}

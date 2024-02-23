@@ -1,1 +1,11 @@
-<p>news-item works!</p>
+<div *ngIf="$currentNews | async as news" class="news-item">
+  <h2 class="h1 news-item__title">{{ news.title }}</h2>
+  <div class="news-item__date-box">
+    <p class="news-item__date">{{ news.publishedDate | date: 'dd.MM.yyyy' }}</p>
+  </div>
+  <div class="news-item__image-box">
+    <img class="news-item__image" [src]="news.titleImageUrl" [alt]="news.title">
+  </div>
+  <p class="news-item__content">{{ news.description }}</p>
+  <div class="news-item__content" [innerHTML]="news.text"></div>
+</div>

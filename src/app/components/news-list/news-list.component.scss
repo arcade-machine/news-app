@@ -1,4 +1,69 @@
+@import "../../../assets/styles/colors";
+@import "../../../assets/styles/variables";
+@import "../../../assets/styles/mixins/media";
 
 .news-list {
   padding: 24px 0;
+
+  @include md {
+    padding: 40px 0;
+  }
+
+  &__title {
+    margin-bottom: 20px;
+
+    @include md {
+      margin-bottom: 40px;
+    }
+  }
+
+  &__grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-gap: 24px;
+
+    @include sm {
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    @include md {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+}
+
+.news {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+
+  &__image-box {
+    width: 100%;
+    height: 343px;
+    margin-bottom: 16px;
+    border-radius: 32px;
+    overflow: hidden;
+
+    @include sm {
+      height: 379px;
+    }
+  }
+
+  &__image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    background-size: cover;
+  }
+
+  &__date-box {
+    padding: 8px 12px;
+    margin-bottom: 16px;
+    border-radius: 25px;
+    background-color: $black-05;
+  }
+
+  &__date {
+    font-size: $size-base;
+  }
 }

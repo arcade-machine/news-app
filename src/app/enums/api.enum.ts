@@ -1,3 +1,4 @@
 export enum NewsAPI {
-  NEWS = 'https://webapi.autodoc.ru/api/news/1/10'
+  BASE_API = 'https://webapi.autodoc.ru/api/news',
+  NEWS = '/1/10',
 }

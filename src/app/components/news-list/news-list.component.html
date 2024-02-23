@@ -1,15 +1,15 @@
-<div class="news-list">
-  <h2 class="h1">Автомобильные новости</h2>
+<div class="news-list" *ngIf="$news | async as newsList">
+  <h2 class="h1 news-list__title">Автомобильные новости</h2>
 
-    <ng-container *ngFor="let news of newsList">
-      <div class="news">
-        <div class="news__image">
-          <img [src]="news.titleImageUrl" width="50" height="50">
-        </div>
-        <div class="news__date-box">
-          <p class="news__date">{{ news.publishedDate | date }}</p>
-        </div>
-        <h3 class="news__title">{{ news.title }}</h3>
+  <div class="news-list__grid">
+    <div class="news" *ngFor="let news of newsList" (click)="openSingleNews(news)">
+      <div class="news__image-box">
+        <img class="news__image" [src]="news.titleImageUrl" [alt]="news.title">
       </div>
-    </ng-container>
+      <div class="news__date-box">
+        <p class="news__date">{{ news.publishedDate | date: 'dd.MM.yyyy' }}</p>
+      </div>
+      <h3 class="news__title p">{{ news.title }}</h3>
+    </div>
+  </div>
 </div>
