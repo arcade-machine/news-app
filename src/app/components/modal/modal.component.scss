@@ -34,7 +34,7 @@
     margin-bottom: 32px;
   }
 
-  &__button-hint {
+  &__hint {
     display: none;
   }
 
@@ -61,7 +61,7 @@
     flex-direction: column;
   }
 
-  &__upload, &__submit {
+  &__upload, &__submit, &__success-close {
     width: 100%;
     padding: 16px;
     border-radius: 16px;
@@ -79,11 +79,94 @@
     display: none;
   }
 
-  &__submit {
+  &__content {
+    display: flex;
+    flex-direction: column;
+  }
+
+  &__submit, &__success-close {
+    color: $white-100;
+    background-color: $black-100;
+
     &:disabled {
       color: $black-60;
       border: none;
       background-color: $black-10;
+    }
+  }
+
+  &__upload-image-box {
+    position: relative;
+    width: 210px;
+    height: 110px;
+    margin-bottom: 32px;
+  }
+
+  &__upload-image, &__success-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  &__close-button, &__remove-image {
+    position: relative;
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+
+    &::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-size: cover;
+    }
+  }
+
+  &__close-button {
+    margin-left: auto;
+
+    &:before {
+      background-image: url("/assets/svg/plus-white.svg");
+    }
+  }
+
+  &__remove-image {
+    position: absolute;
+    top: -10px;
+    right: -10px;
+
+    &:before {
+      rotate: 45deg;
+      background-image: url("/assets/svg/plus.svg");
+    }
+  }
+
+  &__success-image-box {
+    width: 100%;
+    height: 200px;
+    margin-bottom: 16px;
+
+    @include sm {
+      width: 210px;
+      height: auto;
+      margin-bottom: 0;
+      margin-right: 16px;
+    }
+  }
+
+  &__wrapper {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 32px;
+
+    @include sm {
+      flex-direction: row;
     }
   }
 }

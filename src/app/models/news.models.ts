@@ -19,5 +19,5 @@ export interface News {
 export interface NewsFormData {
   title: string;
   text: string;
-  image: File | null;
+  image: string | null;
 }

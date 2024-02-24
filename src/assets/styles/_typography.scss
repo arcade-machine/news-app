@@ -70,7 +70,7 @@ a {
 
 p,
 .p {
-  @include font-size-mixin($size-regular, $size-s, 1.5, 1.4);
+  @include font-size-mixin($size-regular, $size-s, 1.2, 1.1);
   font-family: $font-family-regular;
 }
 

@@ -1,11 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import {ChangeDetectionStrategy, Component} from '@angular/core';
 import {RouterLink, RouterOutlet} from '@angular/router';
-import { NewsListComponent } from "./components/news-list/news-list.component";
-import { NewsHttpService } from "./services/news-http.service";
-import { HttpClientModule } from "@angular/common/http";
+import {NewsListComponent} from "./components/news-list/news-list.component";
+import {NewsHttpService} from "./services/news-http.service";
+import {HttpClientModule} from "@angular/common/http";
 import {AsyncPipe, NgIf, NgOptimizedImage} from "@angular/common";
-import {News, NewsModel} from "./models/news.models";
-import {map, Observable} from "rxjs";
 import {ModalComponent} from "./components/modal/modal.component";
 
 @Component({
@@ -14,14 +12,19 @@ import {ModalComponent} from "./components/modal/modal.component";
   imports: [RouterOutlet, HttpClientModule, NewsListComponent, NgOptimizedImage, AsyncPipe, RouterLink, ModalComponent, NgIf],
   providers: [NewsHttpService],
   templateUrl: './app.component.html',
-  styleUrl: './app.component.scss'
+  styleUrl: './app.component.scss',
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class AppComponent {
-  public isModalOpen = true;
+  public isModalOpen = false;
   constructor() {
   }
 
   public addNews(): void {
-    console.log('kappa');
+    this.isModalOpen = true;
+  }
+
+  public onModalClosedEvent(): void {
+    this.isModalOpen = false;
   }
 }
