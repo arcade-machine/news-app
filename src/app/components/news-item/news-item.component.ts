@@ -24,7 +24,6 @@ export class NewsItemComponent implements OnInit {
     this.route.paramMap.subscribe(params => {
       const newsUrl = `${params.get('category')}/${params.get('id')}`;
       this.$currentNews = this.newsHttpService.getSingleNews(newsUrl);
-      this.$currentNews.subscribe(console.log)
     });
   }
 }

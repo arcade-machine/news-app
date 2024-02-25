@@ -8,8 +8,8 @@ import {News, NewsModel} from "../models/news.models";
 export class NewsHttpService {
   constructor(private http: HttpClient) {}
 
-  public getNews(): Observable<NewsModel> {
-    return this.http.get<NewsModel>(`${NewsAPI.BASE_API}${NewsAPI.NEWS}`);
+  public getNews(page: number): Observable<NewsModel> {
+    return this.http.get<NewsModel>(`${NewsAPI.BASE_API}/${page}/10`);
   }
 
   public getSingleNews(newsURL: string): Observable<News> {

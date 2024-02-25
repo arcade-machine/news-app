@@ -12,7 +12,7 @@
       <div class="modal__footer">
         <label class="modal__upload">
           <span class="modal__upload-hint">Загрузить изображение</span>
-          <input (change)="onFileSelected($event)" class="modal__upload-input" type="file" id="image" name="image" required formControlName="image">
+          <input (change)="onFileSelected($event)" class="modal__upload-input" type="file" id="image" name="image" required formControlName="titleImageUrl">
         </label>
         <div class="modal__upload-image-box" *ngIf="imageBase64">
           <img class="modal__upload-image" [src]="imageBase64">

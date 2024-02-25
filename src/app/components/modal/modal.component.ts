@@ -34,7 +34,7 @@ export class ModalComponent implements OnInit {
     this.newsForm = new FormGroup({
       title: new FormControl(null, Validators.required),
       text: new FormControl(null, Validators.required),
-      image: new FormControl(null, Validators.required)
+      titleImageUrl: new FormControl(null, Validators.required)
     })
   }
 
@@ -52,7 +52,8 @@ export class ModalComponent implements OnInit {
 
     storedData.push({
       ...this.newsForm.getRawValue(),
-      image: this.imageBase64,
+      titleImageUrl: this.imageBase64,
+      publishedDate: new Date(),
       customUpload: true,
     });
 

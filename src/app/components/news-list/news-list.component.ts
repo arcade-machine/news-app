@@ -1,10 +1,14 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, HostListener, Input, OnInit} from '@angular/core';
 import { NewsItemComponent } from "../news-item/news-item.component";
 import { News } from "../../models/news.models";
 import {CommonModule, NgOptimizedImage} from "@angular/common";
 import {map, Observable} from "rxjs";
 import {NewsHttpService} from "../../services/news-http.service";
 import {Router, RouterLink} from "@angular/router";
+import {Select, Store} from "@ngxs/store";
+import {NewsState} from "../../state/news.state";
+import {NewsSelectors} from "../../state/news.selectors";
+import {GetNews} from "../../state/news.actions";
 
 @Component({
   selector: 'app-news-list',
@@ -19,21 +23,32 @@ import {Router, RouterLink} from "@angular/router";
   styleUrl: './news-list.component.scss'
 })
 export class NewsListComponent implements OnInit {
-  public $news: Observable<News[]> | undefined ;
+  @Select(NewsSelectors.news) $news: Observable<News[]> | undefined;
+  @Select(NewsSelectors.currentPage) $currentPage: Observable<number> | undefined;
 
   constructor(
-    private newsHttpService: NewsHttpService,
-    private router: Router
-  ) {
+    private router: Router,
+    private store: Store
+  ) {}
+
+  @HostListener("window:scroll", []) onWindowScroll() {
+    if (document.documentElement.clientHeight + document.documentElement.scrollTop >= document.documentElement.scrollHeight - 1) {
+      this.loadNextPage();
+    }
   }
 
   public ngOnInit(): void {
-    this.$news = this.newsHttpService.getNews().pipe(map((response) => response.news));
-
-    this.newsHttpService.getSingleNews('novosti-kompanii/1840').subscribe(console.log);
+    this.store.dispatch(new GetNews());
   }
 
   public openSingleNews(news: News): void {
+    if (news.customUpload) {
+      return;
+    }
     this.router.navigateByUrl(`news/${news.url}`);
+  }
+
+  loadNextPage(): void {
+    this.store.dispatch(new GetNews());
   }
 }
