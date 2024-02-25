@@ -3,6 +3,11 @@ $font-family-medium: 'inter-Medium', Helvetica, Arial, sans-serif;
 $font-family-regular: 'Inter-Regular', Helvetica, Arial, sans-serif;
 
 $size-base: 16px;
+$size-q: $size-base * 0.25; // 4px
+$size-h: $size-base * 0.5; // 8px
+$size-1: $size-base; // 16px
+$size-1h: $size-base * 1.5; // 24px
+$size-2: $size-base * 2; // 32px
 $size-h1: $size-base * 4; // 64px
 $size-h2: $size-base * 2; // 32px
 $size-h3: $size-base * 1.5; // 24px

@@ -2,6 +2,8 @@
 // for proper view of html content
 // on the single news page
 
+@import 'variables';
+
 p, img {
   max-width: 100%;
 }
@@ -12,6 +14,6 @@ p, img {
 
 .news-item__content {
   p {
-    margin: 16px 0;
+    margin: $size-1 0;
   }
 }

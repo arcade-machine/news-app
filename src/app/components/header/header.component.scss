@@ -1,12 +1,13 @@
 @import "../../../assets/styles/colors";
+@import "../../../assets/styles/variables";
 @import '../../../assets/styles/mixins/media';
 
 .header {
   border-bottom: 1px solid $black-10;
-  padding: 16px 0;
+  padding: $size-1 0;
 
   @include sm {
-    padding: 24px 0;
+    padding: $size-1h 0;
   }
 
   &__container {

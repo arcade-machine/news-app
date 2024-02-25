@@ -8,16 +8,16 @@
   left: 0;
   width: 100%;
   height: 100%;
-  padding: 80px 16px;
+  padding: 80px $size-1;
   background-color: rgba(0, 0, 0, 0.4);
 
   &__form {
     width: 100%;
-    padding: 16px;
+    padding: $size-1;
     margin: 0 auto;
     display: flex;
     flex-direction: column;
-    border-radius: 16px;
+    border-radius: $size-1;
     background-color: $bg;
 
     @include sm {
@@ -31,7 +31,7 @@
 
   &__header {
     display: flex;
-    margin-bottom: 32px;
+    margin-bottom: $size-2;
   }
 
   &__hint {
@@ -39,20 +39,20 @@
   }
 
   &__input {
-    padding: 16px;
-    margin-bottom: 16px;
+    padding: $size-1;
+    margin-bottom: $size-1;
     background-color: $black-05;
     border: none;
-    border-radius: 16px;
+    border-radius: $size-1;
   }
 
   &__textarea {
     height: 230px;
-    padding: 16px;
-    margin-bottom: 16px;
+    padding: $size-1;
+    margin-bottom: $size-1;
     background-color: $black-05;
     border: none;
-    border-radius: 16px;
+    border-radius: $size-1;
     resize: none;
   }
 
@@ -63,13 +63,13 @@
 
   &__upload, &__submit, &__success-close {
     width: 100%;
-    padding: 16px;
-    border-radius: 16px;
+    padding: $size-1;
+    border-radius: $size-1;
     text-align: center;
   }
 
   &__upload {
-    margin-bottom: 16px;
+    margin-bottom: $size-1;
     color: $link;
     border: 1px dashed $link;
     cursor: pointer;
@@ -99,7 +99,7 @@
     position: relative;
     width: 210px;
     height: 110px;
-    margin-bottom: 32px;
+    margin-bottom: $size-2;
   }
 
   &__upload-image, &__success-image {
@@ -150,20 +150,20 @@
   &__success-image-box {
     width: 100%;
     height: 200px;
-    margin-bottom: 16px;
+    margin-bottom: $size-1;
 
     @include sm {
       width: 210px;
       height: auto;
       margin-bottom: 0;
-      margin-right: 16px;
+      margin-right: $size-1;
     }
   }
 
   &__wrapper {
     display: flex;
     flex-direction: column;
-    margin-bottom: 32px;
+    margin-bottom: $size-2;
 
     @include sm {
       flex-direction: row;
