@@ -1,9 +1,9 @@
-import {Action, State, StateContext} from "@ngxs/store";
-import {News, NewsModel} from "../models/news.models";
-import {NewsHttpService} from "../services/news-http.service";
-import {map, tap} from "rxjs";
-import {GetNews} from "./news.actions";
-import {Injectable} from "@angular/core";
+import { Action, State, StateContext } from "@ngxs/store";
+import { News } from "../models/news.models";
+import { NewsHttpService } from "../services/news-http.service";
+import { map, tap } from "rxjs";
+import { GetNews } from "./news.actions";
+import { Injectable } from "@angular/core";
 
 export interface NewsStateModel {
   news: News[];

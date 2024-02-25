@@ -1,15 +1,16 @@
-import {ChangeDetectionStrategy, Component} from '@angular/core';
-import {RouterLink, RouterOutlet} from '@angular/router';
-import {NewsListComponent} from "./components/news-list/news-list.component";
-import {NewsHttpService} from "./services/news-http.service";
-import {HttpClientModule} from "@angular/common/http";
-import {AsyncPipe, NgIf, NgOptimizedImage} from "@angular/common";
-import {ModalComponent} from "./components/modal/modal.component";
+import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { RouterLink, RouterOutlet } from '@angular/router';
+import { NewsListComponent } from "./components/news-list/news-list.component";
+import { NewsHttpService } from "./services/news-http.service";
+import { HttpClientModule } from "@angular/common/http";
+import { AsyncPipe, NgIf, NgOptimizedImage } from "@angular/common";
+import { ModalComponent } from "./components/modal/modal.component";
+import { HeaderComponent } from "./components/header/header.component";
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet, HttpClientModule, NewsListComponent, NgOptimizedImage, AsyncPipe, RouterLink, ModalComponent, NgIf],
+  imports: [RouterOutlet, HttpClientModule, NewsListComponent, NgOptimizedImage, AsyncPipe, RouterLink, ModalComponent, NgIf, HeaderComponent],
   providers: [NewsHttpService],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
@@ -20,7 +21,7 @@ export class AppComponent {
   constructor() {
   }
 
-  public addNews(): void {
+  onModalOpenEvent(): void {
     this.isModalOpen = true;
   }
 

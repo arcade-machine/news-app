@@ -6,34 +6,35 @@
         <span class="modal__hint">Закрыть модальное окно</span>
       </button>
     </div>
-    <div class="modal__content" *ngIf="!formSubmitted else success">
-      <input class="modal__input p" type="text" id="title" name="title" placeholder="Заголовок" required formControlName="title">
-      <textarea class="modal__textarea p" type="text" id="text" name="text" placeholder="Текст" required formControlName="text"></textarea>
-      <div class="modal__footer">
-        <label class="modal__upload">
-          <span class="modal__upload-hint">Загрузить изображение</span>
-          <input (change)="onFileSelected($event)" class="modal__upload-input" type="file" id="image" name="image" required formControlName="titleImageUrl">
-        </label>
-        <div class="modal__upload-image-box" *ngIf="imageBase64">
-          <img class="modal__upload-image" [src]="imageBase64">
-          <button class="modal__remove-image" (click)="removeImage()">
-            <span class="modal__hint">Удалить изображение</span>
-          </button>
+    @if (!formSubmitted) {
+      <div class="modal__content">
+        <input class="modal__input p" type="text" id="title" name="title" placeholder="Заголовок" required formControlName="title">
+        <textarea class="modal__textarea p" type="text" id="text" name="text" placeholder="Текст" required formControlName="text"></textarea>
+        <div class="modal__footer">
+          <label class="modal__upload">
+            <span class="modal__upload-hint">Загрузить изображение</span>
+            <input (change)="onFileSelected($event)" class="modal__upload-input" type="file" id="image" name="image" required formControlName="titleImageUrl">
+          </label>
+          <div class="modal__upload-image-box" *ngIf="imageBase64">
+            <img class="modal__upload-image" [src]="imageBase64">
+            <button class="modal__remove-image" (click)="removeImage()">
+              <span class="modal__hint">Удалить изображение</span>
+            </button>
+          </div>
+          <button class="modal__submit" type="submit" [disabled]="!newsForm.valid" >Опубликовать новость</button>
         </div>
-        <button class="modal__submit" type="submit" [disabled]="!newsForm.valid" >Опубликовать новость</button>
       </div>
-    </div>
+    } @else {
+      <div class="modal__success">
+        <div class="modal__wrapper">
+          <div class="modal__success-image-box">
+            <img class="modal__success-image" [src]="imageBase64">
+          </div>
+          <p class="p">{{ newsForm.controls['title'].value }}</p>
+        </div>
+        <button class="modal__success-close" type="button" (click)="onSuccessHandle()">Окей</button>
+      </div>
+    }
   </form>
 </div>
 
-<ng-template #success>
-  <div class="modal__success">
-    <div class="modal__wrapper">
-      <div class="modal__success-image-box">
-        <img class="modal__success-image" [src]="imageBase64">
-      </div>
-      <p class="p">{{ newsForm.controls['title'].value }}</p>
-    </div>
-    <button class="modal__success-close" type="button" (click)="onSuccessHandle()">Окей</button>
-  </div>
-</ng-template>

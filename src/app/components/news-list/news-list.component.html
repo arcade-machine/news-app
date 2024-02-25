@@ -2,14 +2,16 @@
   <h2 class="h1 news-list__title">Автомобильные новости</h2>
 
   <div class="news-list__grid">
-    <div class="news" *ngFor="let news of newsList" (click)="openSingleNews(news)">
-      <div class="news__image-box">
-        <img class="news__image" [src]="news.titleImageUrl" [alt]="news.title">
+    @for (news of newsList; track news.id) {
+      <div class="news" (click)="openSingleNews(news)">
+        <div class="news__image-box">
+          <img class="news__image" [src]="news.titleImageUrl" [alt]="news.title">
+        </div>
+        <div class="news__date-box">
+          <p class="news__date">{{ news.publishedDate | date: 'dd.MM.yyyy' }}</p>
+        </div>
+        <h3 class="news__title p">{{ news.title }}</h3>
       </div>
-      <div class="news__date-box">
-        <p class="news__date">{{ news.publishedDate | date: 'dd.MM.yyyy' }}</p>
-      </div>
-      <h3 class="news__title p">{{ news.title }}</h3>
-    </div>
+    }
   </div>
 </div>

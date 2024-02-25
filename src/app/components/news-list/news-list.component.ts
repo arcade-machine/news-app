@@ -1,12 +1,10 @@
-import {Component, HostListener, Input, OnInit} from '@angular/core';
-import { NewsItemComponent } from "../news-item/news-item.component";
-import { News } from "../../models/news.models";
+import {ChangeDetectionStrategy, Component, HostListener, OnInit} from '@angular/core';
+import {NewsItemComponent} from "../news-item/news-item.component";
+import {News} from "../../models/news.models";
 import {CommonModule, NgOptimizedImage} from "@angular/common";
-import {map, Observable} from "rxjs";
-import {NewsHttpService} from "../../services/news-http.service";
+import {Observable} from "rxjs";
 import {Router, RouterLink} from "@angular/router";
 import {Select, Store} from "@ngxs/store";
-import {NewsState} from "../../state/news.state";
 import {NewsSelectors} from "../../state/news.selectors";
 import {GetNews} from "../../state/news.actions";
 
@@ -20,18 +18,19 @@ import {GetNews} from "../../state/news.actions";
     RouterLink
   ],
   templateUrl: './news-list.component.html',
-  styleUrl: './news-list.component.scss'
+  styleUrl: './news-list.component.scss',
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class NewsListComponent implements OnInit {
-  @Select(NewsSelectors.news) $news: Observable<News[]> | undefined;
-  @Select(NewsSelectors.currentPage) $currentPage: Observable<number> | undefined;
+  @Select(NewsSelectors.news) $news!: Observable<News[]>;
+  @Select(NewsSelectors.currentPage) $currentPage!: Observable<number>;
 
   constructor(
     private router: Router,
     private store: Store
   ) {}
 
-  @HostListener("window:scroll", []) onWindowScroll() {
+  @HostListener("window:scroll", []) onWindowScroll(): void {
     if (document.documentElement.clientHeight + document.documentElement.scrollTop >= document.documentElement.scrollHeight - 1) {
       this.loadNextPage();
     }
@@ -45,6 +44,7 @@ export class NewsListComponent implements OnInit {
     if (news.customUpload) {
       return;
     }
+
     this.router.navigateByUrl(`news/${news.url}`);
   }
 

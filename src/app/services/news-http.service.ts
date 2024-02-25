@@ -2,7 +2,7 @@ import { Injectable } from "@angular/core";
 import { HttpClient } from "@angular/common/http";
 import { Observable } from "rxjs";
 import { NewsAPI } from "../enums";
-import {News, NewsModel} from "../models/news.models";
+import { News, NewsModel } from "../models/news.models";
 
 @Injectable()
 export class NewsHttpService {

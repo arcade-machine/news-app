@@ -1,6 +1,6 @@
-import {Selector} from "@ngxs/store";
-import {NewsState, NewsStateModel} from "./news.state";
-import {News} from "../models/news.models";
+import { Selector} from "@ngxs/store";
+import { NewsState, NewsStateModel } from "./news.state";
+import { News } from "../models/news.models";
 
 export class NewsSelectors {
   @Selector([NewsState])

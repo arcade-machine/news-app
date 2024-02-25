@@ -1,9 +1,9 @@
-import {Component, OnInit} from '@angular/core';
-import {ActivatedRoute} from "@angular/router";
-import {Observable} from "rxjs";
-import {News} from "../../models/news.models";
-import {NewsHttpService} from "../../services/news-http.service";
-import {AsyncPipe, DatePipe, NgIf} from "@angular/common";
+import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from "@angular/router";
+import { Observable } from "rxjs";
+import { News } from "../../models/news.models";
+import { NewsHttpService } from "../../services/news-http.service";
+import { AsyncPipe, DatePipe, NgIf } from "@angular/common";
 
 @Component({
   selector: 'app-news-item',
@@ -14,10 +14,11 @@ import {AsyncPipe, DatePipe, NgIf} from "@angular/common";
     DatePipe
   ],
   templateUrl: './news-item.component.html',
-  styleUrl: './news-item.component.scss'
+  styleUrl: './news-item.component.scss',
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class NewsItemComponent implements OnInit {
-  public $currentNews: Observable<News> | undefined;
+  public $currentNews!: Observable<News>;
   constructor(private route: ActivatedRoute, private newsHttpService: NewsHttpService,) {}
 
   public ngOnInit(): void {
