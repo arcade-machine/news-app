@@ -1,7 +1,9 @@
 import {ChangeDetectionStrategy, ChangeDetectorRef, Component, EventEmitter, OnInit, Output} from '@angular/core';
 import {FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators} from "@angular/forms";
-import {NewsFormData} from "../../models/news.models";
+import {News} from "../../models/news.models";
 import {NgIf} from "@angular/common";
+import {Store} from "@ngxs/store";
+import {UpdateLocalNews} from "../../state/news.actions";
 
 @Component({
   selector: 'app-modal',
@@ -22,8 +24,10 @@ export class ModalComponent implements OnInit {
 
   @Output() modalIsClosed: EventEmitter<void> = new EventEmitter<void>();
 
-  constructor(private cd: ChangeDetectorRef) {
-  }
+  constructor(
+    private cd: ChangeDetectorRef,
+    private store: Store
+  ) {}
 
   private resetForm(): void {
     this.newsForm.reset();
@@ -43,19 +47,14 @@ export class ModalComponent implements OnInit {
       return
     }
 
-    let storedData: NewsFormData[] = [];
+    let storedData: News[] = [];
     const storedDataString = localStorage.getItem('newsData');
 
     if (storedDataString) {
       storedData = JSON.parse(storedDataString);
     }
 
-    storedData.push({
-      ...this.newsForm.getRawValue(),
-      titleImageUrl: this.imageBase64,
-      publishedDate: new Date(),
-      customUpload: true,
-    });
+    storedData.push(this.getUploadedNewsData());
 
     localStorage.setItem('newsData', JSON.stringify(storedData));
     this.formSubmitted = true;
@@ -87,6 +86,16 @@ export class ModalComponent implements OnInit {
   }
 
   public onSuccessHandle(): void {
+    this.store.dispatch(new UpdateLocalNews(this.getUploadedNewsData()));
     this.closeModal();
+  }
+
+  private getUploadedNewsData(): News {
+    return {
+      ...this.newsForm.getRawValue(),
+      titleImageUrl: this.imageBase64,
+      publishedDate: new Date(),
+      customUpload: true,
+    }
   }
 }

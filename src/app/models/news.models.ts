@@ -15,9 +15,3 @@ export interface News {
   text?: string;
   customUpload?: boolean;
 }
-
-export interface NewsFormData {
-  title: string;
-  text: string;
-  image: string | null;
-}

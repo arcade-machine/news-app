@@ -2,7 +2,7 @@ import { Action, State, StateContext } from "@ngxs/store";
 import { News } from "../models/news.models";
 import { NewsHttpService } from "../services/news-http.service";
 import { map, tap } from "rxjs";
-import { GetNews } from "./news.actions";
+import {GetNews, UpdateLocalNews} from "./news.actions";
 import { Injectable } from "@angular/core";
 
 export interface NewsStateModel {
@@ -43,12 +43,10 @@ export class NewsState {
     const storedNewsString = localStorage.getItem('newsData');
     const state = ctx.getState();
     const nextPage = state.page + 1;
-    let storedNews: News[] = [];
 
     if (storedNewsString && !ctx.getState().newsInLocalStorageAdded) {
-      storedNews = JSON.parse(storedNewsString);
       ctx.patchState({
-        news: storedNews,
+        news: JSON.parse(storedNewsString),
         newsInLocalStorageAdded: true,
       });
     }
@@ -63,5 +61,13 @@ export class NewsState {
         });
       })
     );
+  }
+
+  @Action(UpdateLocalNews)
+  updateLocalNews(ctx: StateContext<NewsStateModel>, action: UpdateLocalNews): void {
+    ctx.patchState({
+      news: [action.newsFormData, ...ctx.getState().news],
+      newsInLocalStorageAdded: true,
+    });
   }
 }
