@@ -9,7 +9,7 @@ export class NewsSelectors {
   }
 
   @Selector([NewsState])
-  static currentPage(state: NewsStateModel): number {
-    return state.page;
+  static currentNews(state: NewsStateModel): News | null {
+    return state.currentNews;
   }
 }

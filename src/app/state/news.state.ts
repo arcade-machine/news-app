@@ -1,15 +1,17 @@
 import { Action, State, StateContext } from "@ngxs/store";
 import { News } from "../models/news.models";
 import { NewsHttpService } from "../services/news-http.service";
-import { map, tap } from "rxjs";
-import {GetNews, UpdateLocalNews} from "./news.actions";
+import { catchError, map, Observable, of, tap } from "rxjs";
+import { GetNews, GetSingleNews, UpdateLocalNews } from "./news.actions";
 import { Injectable } from "@angular/core";
+import { Router } from "@angular/router";
 
 export interface NewsStateModel {
   news: News[];
   page: number;
   newsInLocalStorageAdded: boolean;
   isLoaded: boolean;
+  currentNews: News | null;
 }
 
 @State<NewsStateModel>({
@@ -19,21 +21,24 @@ export interface NewsStateModel {
     page: 1,
     newsInLocalStorageAdded: false,
     isLoaded: true,
+    currentNews: null,
   }
 })
 @Injectable()
 export class NewsState {
-  constructor(private newsHttpService: NewsHttpService) {
-  }
+  constructor(
+    private newsHttpService: NewsHttpService,
+    private router: Router,
+  ) {}
 
   @Action(GetNews)
-  getNews(ctx: StateContext<NewsStateModel>, action: GetNews) {
+  getNews(ctx: StateContext<NewsStateModel>, action: GetNews): Observable<News[]> {
     if (typeof localStorage === 'undefined') {
-      return [];
+      return of([]);
     }
 
     if (!ctx.getState().isLoaded) {
-      return ctx.getState().news;
+      return of(ctx.getState().news);
     }
 
     ctx.patchState({
@@ -69,5 +74,24 @@ export class NewsState {
       news: [action.newsFormData, ...ctx.getState().news],
       newsInLocalStorageAdded: true,
     });
+  }
+
+  @Action(GetSingleNews)
+  getSingleNews(ctx: StateContext<NewsStateModel>, action: GetSingleNews): Observable<News | null> {
+    ctx.patchState({
+      currentNews: null
+    });
+
+    return this.newsHttpService.getSingleNews(action.newsUrl).pipe(
+      tap((news: News) => {
+        ctx.patchState({
+          currentNews: news
+        })
+      }),
+      catchError((error: Error) => {
+        this.router.navigateByUrl('/');
+        return of(null);
+      }),
+    );
   }
 }

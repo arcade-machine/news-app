@@ -1,12 +1,12 @@
-import {ChangeDetectionStrategy, Component, HostListener, OnInit} from '@angular/core';
-import {NewsItemComponent} from "../news-item/news-item.component";
-import {News} from "../../models/news.models";
-import {CommonModule, NgOptimizedImage} from "@angular/common";
-import {Observable} from "rxjs";
-import {Router, RouterLink} from "@angular/router";
-import {Select, Store} from "@ngxs/store";
-import {NewsSelectors} from "../../state/news.selectors";
-import {GetNews} from "../../state/news.actions";
+import { ChangeDetectionStrategy, Component, HostListener, OnInit } from '@angular/core';
+import { NewsItemComponent } from "../news-item/news-item.component";
+import { News } from "../../models/news.models";
+import { CommonModule, NgOptimizedImage } from "@angular/common";
+import { Observable } from "rxjs";
+import { Router, RouterLink } from "@angular/router";
+import { Select, Store } from "@ngxs/store";
+import { NewsSelectors } from "../../state/news.selectors";
+import { GetNews } from "../../state/news.actions";
 
 @Component({
   selector: 'app-news-list',
@@ -23,7 +23,6 @@ import {GetNews} from "../../state/news.actions";
 })
 export class NewsListComponent implements OnInit {
   @Select(NewsSelectors.news) $news!: Observable<News[]>;
-  @Select(NewsSelectors.currentPage) $currentPage!: Observable<number>;
 
   constructor(
     private router: Router,

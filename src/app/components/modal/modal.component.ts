@@ -1,9 +1,9 @@
-import {ChangeDetectionStrategy, ChangeDetectorRef, Component, EventEmitter, OnInit, Output} from '@angular/core';
-import {FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators} from "@angular/forms";
-import {News} from "../../models/news.models";
-import {NgIf} from "@angular/common";
-import {Store} from "@ngxs/store";
-import {UpdateLocalNews} from "../../state/news.actions";
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } from "@angular/forms";
+import { News } from "../../models/news.models";
+import { NgIf } from "@angular/common";
+import { Store } from "@ngxs/store";
+import { UpdateLocalNews } from "../../state/news.actions";
 
 @Component({
   selector: 'app-modal',
